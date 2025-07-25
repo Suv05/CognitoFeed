@@ -2,3 +2,8 @@ google-cloud-pubsub
 python-dotenv
 tweepy
 apache-beam[gcp]
+beautifulsoup4
+emoji
+regex
+transformers
+torch
