@@ -13,7 +13,7 @@ topic_path = publisher.topic_path(project_id, topic_id)
 
 # Load environment variables
 load_dotenv()
-bearer_token = os.getenv("BEARER_TOKEN2")
+bearer_token = os.getenv("BEARER_TOKEN1")
 
 # Initialize Tweepy Client
 client = tweepy.Client(bearer_token=bearer_token)
