@@ -17,9 +17,9 @@ from apache_beam.io.gcp.bigquery import WriteToBigQuery, BigQueryDisposition
 # ---------- CONFIG ----------
 PROJECT_ID = "primal-outrider--q3"
 REGION = "asia-south1"
-SUBSCRIPTION = f"projects/primal-outrider--q3/subscriptions/raw-news-articles-sentiment-sub"  # create a 2nd sub!
-BQ_DATASET = "news_sentiment"
-BQ_TABLE = "tweets_sentiment"  # PROJECT:DATASET.TABLE -> primal-outrider--q3:news_sentiment.tweets_sentiment
+SUBSCRIPTION = f"projects/primal-outrider--q3/subscriptions/raw-x-posts-sub" 
+BQ_DATASET = "xs_sentiment"
+BQ_TABLE = "x_data"  # PROJECT:DATASET.TABLE -> primal-outrider--q3.xs_sentiment.x_data
 TABLE_SPEC = f"{PROJECT_ID}:{BQ_DATASET}.{BQ_TABLE}"
 
 # ---------- HELPERS ----------
