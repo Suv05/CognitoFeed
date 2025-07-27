@@ -6,7 +6,7 @@ from google.cloud import pubsub_v1
 import json
 
 project_id = "primal-outrider--q3"
-topic_id = "raw-news-articles"
+topic_id = "raw-x-posts"
 
 publisher = pubsub_v1.PublisherClient()
 topic_path = publisher.topic_path(project_id, topic_id)
