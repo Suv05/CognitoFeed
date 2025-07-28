@@ -230,7 +230,8 @@ def run():
     worker_opts = opts.view_as(WorkerOptions)
     worker_opts.machine_type = "e2-small"  # give PyTorch some CPU
     worker_opts.num_workers = 1
-    worker_opts.max_num_workers = 2
+    worker_opts.max_num_workers = 3
+    worker_opts.autoscaling_algorithm = "THROUGHPUT_BASED"
 
     table_schema = {
         "fields": [
@@ -271,3 +272,6 @@ def run():
 
 if __name__ == "__main__":
     run()
+
+#command for running the pipeline
+# python sentiment-analysis-X.py --runner=DataflowRunner --project=primal-outrider--q3 --region=asia-south1 --worker_zone=asia-south1-b --worker_machine_type=e2-small --num_workers=1 --max_num_workers=3 --temp_location=gs://primal-outrider--q3-dataflow-temp/temp --staging_location=gs://primal-outrider--q3-dataflow-temp/staging --job_name=x-sentiment-pipeline-v3 --streaming --requirements_file=requirements.txt --save_main_session
