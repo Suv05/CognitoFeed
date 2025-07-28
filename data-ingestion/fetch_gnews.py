@@ -66,8 +66,4 @@ for i in range(5): #60
     if i != 4: #59
         time.sleep(3)
 
-# Optionally save articles locally
-with open("news_results.json", "w", encoding="utf-8") as f:
-    json.dump(all_articles, f, ensure_ascii=False, indent=2)
-
 print(f"\n✅ Finished. Total articles published: {len(all_articles)}")

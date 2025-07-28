@@ -24,13 +24,10 @@ categories = [
     "business", "entertainment", "general", "health", "science", "sports", "technology"
 ]
 
-countries = [
-    "br", "ca", "cn", "eg", "fr", "de", "gr", "hk", "in", "ie", "it", "jp", "nl", "no", "pk",
-    "pe", "ph", "pt", "ro", "ru", "sg", "es", "se", "ch", "tw", "ua", "gb", "us"
-]
+countries = ["in", "ca", "us", "gb", "de", "jp", "ru","cn","au"]
 
 # Number of requests
-NUM_REQUESTS = 50 #50
+NUM_REQUESTS = 5 #50
 
 # Loop for fetching and publishing
 for i in range(NUM_REQUESTS):
@@ -41,6 +38,7 @@ for i in range(NUM_REQUESTS):
     params = {
         "category": category,
         "country": country,
+        "pageSize": 15,
         "apiKey": API_KEY
     }
 
