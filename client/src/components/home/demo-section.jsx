@@ -112,7 +112,7 @@ export default function DemoSection() {
                       size="sm"
                       variant="outline"
                       onClick={() => setIsPlaying(!isPlaying)}
-                      className="border-purple-500/30 text-purple-300 hover:bg-purple-500/10"
+                      className="border-purple-500/30 text-purple-300 hover:bg-purple-500/10 bg-[#1a1a1a] hover:text-[#fff] transition-colors"
                     >
                       {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
                     </Button>
@@ -120,7 +120,7 @@ export default function DemoSection() {
                       size="sm"
                       variant="outline"
                       onClick={() => setCurrentDataIndex(0)}
-                      className="border-purple-500/30 text-purple-300 hover:bg-purple-500/10"
+                      className="border-purple-500/30 text-purple-300 hover:bg-purple-500/10 bg-[#1a1a1a] hover:text-[#fff] transition-colors"
                     >
                       <RotateCcw className="w-4 h-4" />
                     </Button>

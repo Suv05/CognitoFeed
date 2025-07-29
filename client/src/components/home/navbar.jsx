@@ -1,25 +1,25 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { motion, useScroll, useTransform } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { Menu, X, Brain } from "lucide-react"
+import { useState, useEffect } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Menu, X, Brain } from "lucide-react";
 
 export default function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const { scrollY } = useScroll()
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { scrollY } = useScroll();
 
-  const navOpacity = useTransform(scrollY, [0, 100], [0.7, 0.95])
-  const navBlur = useTransform(scrollY, [0, 100], [8, 24])
+  const navOpacity = useTransform(scrollY, [0, 100], [0.7, 0.95]);
+  const navBlur = useTransform(scrollY, [0, 100], [8, 24]);
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 20)
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-  const navItems = ["Features", "Demo", "Pricing"]
+  const navItems = ["Features", "Demo","Reviews"];
 
   return (
     <motion.nav
@@ -27,8 +27,10 @@ export default function Navbar() {
         backdropFilter: `blur(${navBlur}px)`,
         backgroundColor: `rgba(0, 0, 0, ${navOpacity})`,
       }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b ${
-        isScrolled ? "border-purple-500/20 shadow-lg shadow-purple-900/20" : "border-transparent"
+      className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-500 border-b ${
+        isScrolled
+          ? "border-purple-500/20 shadow-lg shadow-purple-900/20 bg-black"
+          : "border-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -48,7 +50,7 @@ export default function Navbar() {
                 transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY }}
               />
             </div>
-            <span className="text-lg font-bold bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent">
+            <span className="text-xl font-bold bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent">
               CognitoFeed
             </span>
           </motion.div>
@@ -90,8 +92,14 @@ export default function Navbar() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.6, duration: 0.5 }}
             >
-              <Button variant="ghost" size="sm" className="text-gray-300 hover:text-white hover:bg-white/5 text-sm">
-                Sign In
+              <Button
+                variant="ghost"
+                size="sm"
+                className="text-gray-300 hover:bg-white/10 text-sm"
+              >
+                <span className="inline-flex animate-text-gradient bg-gradient-to-r from-[#b2a8fd] via-[#8678f9] to-[#c7d2fe] bg-[200%_auto] bg-clip-text text-sm text-transparent">
+                  Sign In
+                </span>
               </Button>
             </motion.div>
             <motion.div
@@ -113,7 +121,11 @@ export default function Navbar() {
             className="md:hidden text-gray-300 hover:text-white p-2"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {isMobileMenuOpen ? (
+              <X className="h-5 w-5" />
+            ) : (
+              <Menu className="h-5 w-5" />
+            )}
           </button>
         </div>
       </div>
@@ -137,10 +149,19 @@ export default function Navbar() {
               </a>
             ))}
             <div className="pt-3 space-y-2 border-t border-purple-500/20">
-              <Button variant="ghost" size="sm" className="w-full justify-start text-gray-300">
-                Sign In
+              <Button
+                variant="ghost"
+                size="sm"
+                className="w-full justify-start hover:bg-white/10"
+              >
+                <span className="inline-flex animate-text-gradient bg-gradient-to-r from-[#b2a8fd] via-[#8678f9] to-[#c7d2fe] bg-[200%_auto] bg-clip-text text-sm text-transparent">
+                  Sign In
+                </span>
               </Button>
-              <Button size="sm" className="w-full bg-gradient-to-r from-purple-600 to-purple-500 text-white">
+              <Button
+                size="sm"
+                className="w-full bg-gradient-to-r from-purple-600 to-purple-500 text-white"
+              >
                 Get Started
               </Button>
             </div>
@@ -148,5 +169,5 @@ export default function Navbar() {
         </motion.div>
       )}
     </motion.nav>
-  )
+  );
 }

@@ -52,7 +52,7 @@ export default function HeroSection() {
           className="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/20 backdrop-blur-sm mb-8"
         >
           <Sparkles className="w-4 h-4 text-purple-400 mr-2" />
-          <span className="text-sm text-purple-300 font-medium">AI-Powered News Intelligence</span>
+          <span className="text-sm text-purple-300 font-medium ">AI-Powered News Intelligence</span>
         </motion.div>
 
         {/* Main Heading */}
@@ -120,7 +120,7 @@ export default function HeroSection() {
           <Button
             size="lg"
             variant="outline"
-            className="border-purple-500/30 text-purple-300 hover:bg-purple-500/10 hover:border-purple-400 px-10 py-6 text-lg backdrop-blur-sm group bg-transparent"
+            className="border-purple-500/30 text-purple-300 hover:bg-purple-500/10 hover:border-purple-400 hover:text-[#f0f0f0] px-10 py-6 text-lg backdrop-blur-sm group bg-transparent"
           >
             <Play className="mr-2 w-5 h-5 group-hover:scale-110 transition-transform" />
             Watch Demo
@@ -132,7 +132,7 @@ export default function HeroSection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.2 }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+          className="absolute bottom-12 left-1/2 transform -translate-x-1/2"
         >
           <div className="w-6 h-10 border-2 border-purple-400/30 rounded-full flex justify-center">
             <motion.div

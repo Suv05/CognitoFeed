@@ -55,7 +55,7 @@ export default function TestimonialsSection() {
   }, [isInView])
 
   return (
-    <section ref={sectionRef} className="py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <section ref={sectionRef} id="reviews" className="py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
