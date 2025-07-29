@@ -35,7 +35,7 @@ def publish_to_pubsub(article):
 all_articles = []
 
 # Perform 60 requests with 3s delay
-for i in range(5): #60
+for i in range(50): #60
     category = random.choice(CATEGORIES)
     country = random.choice(COUNTRIES)
 
@@ -63,7 +63,7 @@ for i in range(5): #60
         print(f"[{i+1}/60] ❌ API request failed: {e}")
 
     # Wait 3 seconds between requests (respect rate limits)
-    if i != 4: #59
+    if i != 49: #59
         time.sleep(3)
 
 print(f"\n✅ Finished. Total articles published: {len(all_articles)}")

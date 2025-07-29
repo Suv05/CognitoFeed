@@ -38,7 +38,7 @@ def publish_article_to_pubsub(article):
         print(f"❌ Error publishing to Pub/Sub: {e}")
 
 # Begin 50 requests
-for i in range(5): #50
+for i in range(30): #50
     keyword = random.choice(KEYWORDS)
 
     params = {
@@ -66,7 +66,7 @@ for i in range(5): #50
         print(f"[{i+1}/25] ❌ Request error: {e}")
 
     # Wait 5 seconds before next request
-    if i != 4:
+    if i != 29:
         time.sleep(5)
 
 print("\n✅ Completed 50 NewsAPI requests and published articles to Pub/Sub.")

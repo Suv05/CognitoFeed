@@ -30,7 +30,7 @@ def publish_news_article(article_data):
     except Exception as e:
         print(f"Error publishing message: {e}")
 
-def fetch_posts(query, max_results=100):
+def fetch_posts(query, max_results=50):
     try:
         tweets = client.search_recent_tweets(
             query=query,
@@ -70,4 +70,4 @@ selected_keyword = random.choice(KEYWORDS)
 query = f"{selected_keyword} -is:retweet lang:en"
 
 # Just fetch and publish, no printing
-fetch_posts(query, max_results=99)
+fetch_posts(query, max_results=50)

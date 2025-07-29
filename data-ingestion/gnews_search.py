@@ -39,7 +39,7 @@ def publish_article_to_pubsub(article):
         print(f"❌ Error publishing article: {e}")
 
 # Execute 40 API requests
-for i in range(5): #40
+for i in range(50): #40
     keyword = random.choice(KEYWORDS)
     country = random.choice(COUNTRIES)
 
@@ -66,7 +66,7 @@ for i in range(5): #40
         print(f"[{i+1}/40] ❌ API error: {e}")
 
     # Sleep 3 to 4 seconds between requests
-    if i != 4: #39
+    if i != 49: #39
         sleep_duration = random.uniform(3.0, 4.0)
         time.sleep(sleep_duration)
 

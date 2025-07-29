@@ -27,7 +27,7 @@ categories = [
 countries = ["in", "ca", "us", "gb", "de", "jp", "ru","cn","au"]
 
 # Number of requests
-NUM_REQUESTS = 5 #50
+NUM_REQUESTS = 40 #50
 
 # Loop for fetching and publishing
 for i in range(NUM_REQUESTS):
@@ -37,8 +37,8 @@ for i in range(NUM_REQUESTS):
     url = "https://newsapi.org/v2/top-headlines"
     params = {
         "category": category,
-        "country": country,
-        "pageSize": 15,
+        # "country": country,
+        "pageSize": 20,
         "apiKey": API_KEY
     }
 
