@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Zap, Twitter, Linkedin, Github, Mail } from "lucide-react"
+import { Zap, Twitter, Linkedin, Github, Mail,Brain} from "lucide-react"
 
 export default function Footer() {
   const footerLinks = {
@@ -22,7 +22,7 @@ export default function Footer() {
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
             >
               <div className="relative">
-                <Zap className="h-8 w-8 text-purple-400" />
+                <Brain className="h-8 w-8 text-purple-400" />
                 <div className="absolute inset-0 bg-purple-400/20 blur-xl rounded-full" />
               </div>
               <span className="text-xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
