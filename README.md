@@ -19,11 +19,9 @@
 
 ## 🏗️ **Architecture Overview**
 
-```
-X API + News APIs → Cloud Composer → Pub/Sub → Dataflow → BigQuery
-                                        ↓           ↓         ↓
-                                      GCS Lake    MongoDB   Next.js App
-```
+<img width="1013" height="832" alt="image" src="https://github.com/user-attachments/assets/a601e40b-eda7-40cb-9a0f-a17298505e48" />
+
+
 
 **5-Layer Distributed Architecture:**
 1. **Ingestion Layer** - Multi-source data collection
