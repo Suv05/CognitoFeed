@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Brain } from "lucide-react";
+import { useAuth } from "@clerk/nextjs";
 import Link from "next/link";
 
 export default function Navbar() {
