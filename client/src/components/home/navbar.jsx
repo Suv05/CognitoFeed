@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Brain } from "lucide-react";
+import { useAuth } from "@clerk/nextjs";
+import Link from "next/link";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -19,7 +21,7 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navItems = ["Features", "Demo","Reviews"];
+  const navItems = ["Features", "Demo", "Reviews"];
 
   return (
     <motion.nav
@@ -98,7 +100,7 @@ export default function Navbar() {
                 className="text-gray-300 hover:bg-white/10 text-sm"
               >
                 <span className="inline-flex animate-text-gradient bg-gradient-to-r from-[#b2a8fd] via-[#8678f9] to-[#c7d2fe] bg-[200%_auto] bg-clip-text text-sm text-transparent">
-                  Sign In
+                  <Link href={`/sign-in`}> Sign In </Link>
                 </span>
               </Button>
             </motion.div>
@@ -111,7 +113,7 @@ export default function Navbar() {
                 size="sm"
                 className="bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-700 hover:to-purple-600 text-white border-0 shadow-lg shadow-purple-500/25 text-sm px-6"
               >
-                Get Started
+                <Link href={`/sign-up`}>Get Started</Link>
               </Button>
             </motion.div>
           </div>
@@ -155,6 +157,7 @@ export default function Navbar() {
                 className="w-full justify-start hover:bg-white/10"
               >
                 <span className="inline-flex animate-text-gradient bg-gradient-to-r from-[#b2a8fd] via-[#8678f9] to-[#c7d2fe] bg-[200%_auto] bg-clip-text text-sm text-transparent">
+                  <link rel="stylesheet" href="" />
                   Sign In
                 </span>
               </Button>
