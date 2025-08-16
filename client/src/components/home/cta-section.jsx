@@ -1,14 +1,24 @@
-"use client"
-
-import { useRef } from "react"
+import { useRef, useState, useEffect } from "react"
 import { motion, useInView } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import { ArrowRight, Sparkles } from "lucide-react"
 
 export default function CTASection() {
   const sectionRef = useRef(null)
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" })
+  const [email, setEmail] = useState("")
+  const [isClient, setIsClient] = useState(false)
+
+  // Ensure client-side rendering for the input
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
+
+  const handleEmailSubmit = (e) => {
+    e.preventDefault()
+    // Handle email submission here
+    console.log("Email submitted:", email)
+  }
 
   return (
     <section ref={sectionRef} className="py-32 px-4 sm:px-6 lg:px-8 relative">
@@ -20,7 +30,6 @@ export default function CTASection() {
           className="relative"
         >
           <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-pink-500/20 blur-3xl rounded-3xl" />
-
           <div className="relative bg-black/40 backdrop-blur-xl border border-purple-500/20 rounded-3xl p-16 text-center overflow-hidden">
             <div className="absolute top-8 left-8">
               <Sparkles className="w-8 h-8 text-purple-400/30" />
@@ -28,7 +37,7 @@ export default function CTASection() {
             <div className="absolute bottom-8 right-8">
               <div className="w-4 h-4 bg-pink-400/30 rounded-full" />
             </div>
-
+            
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -48,20 +57,40 @@ export default function CTASection() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="flex flex-col sm:flex-row gap-6 max-w-lg mx-auto mb-8"
+              className="mb-8"
             >
-              <Input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 bg-black/50 border-purple-500/30 text-white placeholder:text-gray-400 focus:border-purple-400 focus:ring-purple-400/20 h-14 text-lg"
-              />
-              <Button
-                size="lg"
-                className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white border-0 shadow-lg shadow-purple-500/25 group h-14 px-8"
-              >
-                Get Started
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
+              {isClient && (
+                <form onSubmit={handleEmailSubmit} className="flex flex-col sm:flex-row gap-6 max-w-lg mx-auto">
+                  <input
+                    type="email"
+                    placeholder="Enter your email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="flex-1 bg-black/50 border border-purple-500/30 text-white placeholder:text-gray-400 focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 focus:outline-none h-14 text-lg px-4 rounded-lg transition-all duration-200"
+                    required
+                  />
+                  <Button
+                    type="submit"
+                    size="lg"
+                    className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white border-0 shadow-lg shadow-purple-500/25 group h-14 px-8 rounded-lg font-medium transition-all duration-300"
+                  >
+                    Get Started
+                    <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </form>
+              )}
+              
+              {/* Fallback for server-side rendering */}
+              {!isClient && (
+                <div className="flex flex-col sm:flex-row gap-6 max-w-lg mx-auto">
+                  <div className="flex-1 bg-black/50 border border-purple-500/30 h-14 rounded-lg flex items-center px-4">
+                    <span className="text-gray-400">Loading...</span>
+                  </div>
+                  <div className="bg-gradient-to-r from-purple-500 to-pink-500 h-14 px-8 rounded-lg flex items-center justify-center">
+                    <span className="text-white font-medium">Get Started</span>
+                  </div>
+                </div>
+              )}
             </motion.div>
 
             <motion.div
