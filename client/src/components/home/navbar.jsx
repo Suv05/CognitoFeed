@@ -3,14 +3,15 @@
 import { useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Brain } from "lucide-react";
-import { useAuth } from "@clerk/nextjs";
+import { Menu, X, Brain, Settings, Bell, User } from "lucide-react";
+import { useUser, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { scrollY } = useScroll();
+  const { isSignedIn, user } = useUser();
 
   const navOpacity = useTransform(scrollY, [0, 100], [0.7, 0.95]);
   const navBlur = useTransform(scrollY, [0, 100], [8, 24]);
@@ -87,35 +88,114 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* CTA Buttons */}
+          {/* Desktop Auth Section */}
           <div className="hidden md:flex items-center space-x-3">
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.6, duration: 0.5 }}
-            >
-              <Button
-                variant="ghost"
-                size="sm"
-                className="text-gray-300 hover:bg-white/10 text-sm"
-              >
-                <span className="inline-flex animate-text-gradient bg-gradient-to-r from-[#b2a8fd] via-[#8678f9] to-[#c7d2fe] bg-[200%_auto] bg-clip-text text-sm text-transparent">
-                  <Link href={`/sign-in`}> Sign In </Link>
-                </span>
-              </Button>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.7, duration: 0.5 }}
-            >
-              <Button
-                size="sm"
-                className="bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-700 hover:to-purple-600 text-white border-0 shadow-lg shadow-purple-500/25 text-sm px-6"
-              >
-                <Link href={`/sign-up`}>Get Started</Link>
-              </Button>
-            </motion.div>
+            {!isSignedIn ? (
+              // Show sign in/up buttons when not signed in
+              <>
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.6, duration: 0.5 }}
+                >
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="text-gray-300 hover:bg-white/10 text-sm"
+                    asChild
+                  >
+                    <Link href="/sign-in">
+                      <span className="inline-flex animate-text-gradient bg-gradient-to-r from-[#b2a8fd] via-[#8678f9] to-[#c7d2fe] bg-[200%_auto] bg-clip-text text-sm text-transparent">
+                        Sign In
+                      </span>
+                    </Link>
+                  </Button>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.7, duration: 0.5 }}
+                >
+                  <Button
+                    size="sm"
+                    className="bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-700 hover:to-purple-600 text-white border-0 shadow-lg shadow-purple-500/25 text-sm px-6"
+                    asChild
+                  >
+                    <Link href="/sign-up">Get Started</Link>
+                  </Button>
+                </motion.div>
+              </>
+            ) : (
+              // Show authenticated user buttons when signed in
+              <>
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.4, duration: 0.5 }}
+                >
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="text-gray-300 hover:bg-white/10 hover:text-purple-300 transition-all duration-300 relative group"
+                    title="Settings"
+                  >
+                    <Settings className="h-4 w-4" />
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-purple-600/10 to-purple-400/10 rounded-lg opacity-0 group-hover:opacity-100"
+                      transition={{ duration: 0.2 }}
+                    />
+                  </Button>
+                </motion.div>
+                
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.5, duration: 0.5 }}
+                >
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="text-gray-300 hover:bg-white/10 hover:text-purple-300 transition-all duration-300 relative group"
+                    title="Notifications"
+                  >
+                    <Bell className="h-4 w-4" />
+                    {/* Notification badge */}
+                    <div className="absolute -top-1 -right-1 h-2 w-2 bg-red-500 rounded-full animate-pulse mr-3" />
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-purple-600/10 to-purple-400/10 rounded-lg opacity-0 group-hover:opacity-100"
+                      transition={{ duration: 0.2 }}
+                    />
+                  </Button>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.6, duration: 0.5 }}
+                  className="flex items-center"
+                >
+                  {/* Welcome message */}
+                  {/* <span className="text-sm text-purple-200 mr-3 hidden lg:block">
+                    Welcome, {user?.firstName || user?.emailAddresses?.[0]?.emailAddress?.split('@')[0]}
+                  </span> */}
+                  
+                  {/* Clerk UserButton with custom styling */}
+                  <div className="relative">
+                    <UserButton
+                      appearance={{
+                        elements: {
+                          avatarBox: "w-8 h-8 ring-2 ring-purple-400/30 ring-offset-2 ring-offset-black hover:ring-purple-400/60 transition-all duration-300",
+                          userButtonPopoverCard: "bg-black/90 backdrop-blur-xl border border-purple-500/30",
+                          userButtonPopoverActionButton: "text-gray-300 hover:text-white hover:bg-purple-500/20",
+                          userButtonPopoverActionButtonText: "text-gray-300",
+                          userButtonPopoverFooter: "hidden"
+                        }
+                      }}
+                    />
+                  </div>
+                </motion.div>
+              </>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -150,23 +230,69 @@ export default function Navbar() {
                 {item}
               </a>
             ))}
-            <div className="pt-3 space-y-2 border-t border-purple-500/20">
-              <Button
-                variant="ghost"
-                size="sm"
-                className="w-full justify-start hover:bg-white/10"
-              >
-                <span className="inline-flex animate-text-gradient bg-gradient-to-r from-[#b2a8fd] via-[#8678f9] to-[#c7d2fe] bg-[200%_auto] bg-clip-text text-sm text-transparent">
-                  <link rel="stylesheet" href="" />
-                  Sign In
-                </span>
-              </Button>
-              <Button
-                size="sm"
-                className="w-full bg-gradient-to-r from-purple-600 to-purple-500 text-white"
-              >
-                Get Started
-              </Button>
+            
+            <div className="pt-3 space-y-3 border-t border-purple-500/20">
+              {!isSignedIn ? (
+                // Mobile auth buttons for non-signed in users
+                <>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="w-full justify-start hover:bg-white/10"
+                    asChild
+                  >
+                    <Link href="/sign-in" onClick={() => setIsMobileMenuOpen(false)}>
+                      <span className="inline-flex animate-text-gradient bg-gradient-to-r from-[#b2a8fd] via-[#8678f9] to-[#c7d2fe] bg-[200%_auto] bg-clip-text text-sm text-transparent">
+                        Sign In
+                      </span>
+                    </Link>
+                  </Button>
+                  <Button
+                    size="sm"
+                    className="w-full bg-gradient-to-r from-purple-600 to-purple-500 text-white"
+                    asChild
+                  >
+                    <Link href="/sign-up" onClick={() => setIsMobileMenuOpen(false)}>
+                      Get Started
+                    </Link>
+                  </Button>
+                </>
+              ) : (
+                // Mobile auth section for signed in users
+                <div className="space-y-3">
+                  <div className="flex items-center space-x-3 px-3 py-2">
+                    <UserButton
+                      appearance={{
+                        elements: {
+                          avatarBox: "w-8 h-8 ring-2 ring-purple-400/30",
+                        }
+                      }}
+                    />
+                    <span className="text-sm text-purple-200">
+                      {user?.firstName || user?.emailAddresses?.[0]?.emailAddress?.split('@')[0]}
+                    </span>
+                  </div>
+                  
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="w-full justify-start hover:bg-white/10 text-gray-300"
+                  >
+                    <Settings className="h-4 w-4 mr-3" />
+                    Settings
+                  </Button>
+                  
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="w-full justify-start hover:bg-white/10 text-gray-300"
+                  >
+                    <Bell className="h-4 w-4 mr-3" />
+                    Notifications
+                    <div className="ml-auto h-2 w-2 bg-red-500 rounded-full" />
+                  </Button>
+                </div>
+              )}
             </div>
           </div>
         </motion.div>
