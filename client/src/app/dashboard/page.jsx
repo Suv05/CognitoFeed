@@ -1,11 +1,11 @@
-import React from 'react';
+import DashboardPage from "@/components/dashboard/dashboard-ui";
 
-function DashboardPage() {
+function Page() {
   return (
     <div>
-      Dashboard Content
+      <DashboardPage />
     </div>
   );
 }
 
-export default DashboardPage;
+export default Page;
