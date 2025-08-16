@@ -1,5 +1,3 @@
-"use client"
-
 import { motion } from "framer-motion"
 import { Zap, Twitter, Linkedin, Github, Mail,Brain} from "lucide-react"
 

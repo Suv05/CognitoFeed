@@ -1,5 +1,3 @@
-"use client"
-
 import { useRef, useEffect } from "react"
 import { motion, useInView } from "framer-motion"
 import { gsap } from "gsap"
