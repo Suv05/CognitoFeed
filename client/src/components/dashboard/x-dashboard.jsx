@@ -29,10 +29,10 @@ import {
   Bar,
   AreaChart,
   Area,
-  Pie, // Declare the Pie variable here
+  Pie
 } from "recharts"
 
-// Mock data based on your MongoDB structure
+
 const mockTweets = [
   {
     _id: "689b784b325acd8d2addf5f7",
@@ -155,7 +155,7 @@ export default function XDashboard({ searchQuery }) {
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
       >
         {[
-          { icon: MessageSquare, label: "Total Posts", value: "2.4K", change: "+12%", color: "purple" },
+          { icon: MessageSquare, label: "Total Posts", value: "500", change: "+12%", color: "purple" },
           { icon: TrendingUp, label: "Positive", value: "45%", change: "+5%", color: "green" },
           { icon: TrendingDown, label: "Negative", value: "35%", change: "-3%", color: "red" },
           { icon: Users, label: "Authors", value: "156", change: "+8%", color: "blue" },
