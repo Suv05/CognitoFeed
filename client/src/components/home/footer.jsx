@@ -1,6 +1,12 @@
 'use client'
 import { motion } from "framer-motion"
-import { Zap, Twitter, Linkedin, Github, Mail,Brain} from "lucide-react"
+import {
+  FaXTwitter as Twitter,
+  FaLinkedinIn as Linkedin,
+  FaGithub as Github,
+} from "react-icons/fa6";
+import { CiMail as Mail } from "react-icons/ci";
+import { Brain} from "lucide-react"
 
 export default function Footer() {
   const footerLinks = {
